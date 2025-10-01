@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HYYahweh — Mais do que uma página</title>
+  <meta name="description" content="Nós somos a HYYahweh, uma página digital criada para falar da palavra do Senhor e seus ensinamentos." />
+  <meta name="theme-color" content="#0f0f10" />
+  <link rel="icon" href="./781cd0900e020e8421732abcbb8a3355-removebg-preview.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+:root{
+  --bg:#0f0f10; --bg-2:#151517; --text:#f6f6f7; --muted:#b8bcc7;
+  --accent:#e2c16b; --accent-2:#e9e5d3;
+  --card:#1b1c20; --border:#2a2c33; --line:#20232b;
+  --danger:#d9534f; --success:#3cb371; --focus:#6aa0ff;
+  --shadow:0 8px 24px rgba(0,0,0,0.25);
+}
+
+/* Reset e base */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--text)}
+body{font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; line-height:1.6; font-size:clamp(0.95rem,2vw,1.1rem)}
+img{max-width:100%;display:block;height:auto}
+a{color:var(--accent);text-decoration:none}
+a:focus,button:focus,input:focus,select:focus,textarea:focus{outline:2px solid var(--focus);outline-offset:2px}
+
+/* Header */
+header{position:sticky;top:0;z-index:50;
+  backdrop-filter:saturate(160%) blur(8px);
+  background:linear-gradient(180deg,rgba(15,15,16,0.85),rgba(15,15,16,0.65));
+  border-bottom:1px solid var(--border);}
+.nav{max-width:1200px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;position:relative}
+.brand{display:flex;align-items:center;gap:12px;font-weight:700}
+.brand img{width:80px;height:80px;border-radius:8px}
+.nav-links{display:flex;gap:18px;flex-wrap:wrap}
+.nav-links a{padding:8px 10px;border-radius:8px}
+.nav-links a:hover{background:var(--card)}
+
+/* Botão hambúrguer */
+.menu-toggle{display:none;font-size:1.8rem;cursor:pointer;color:var(--text);background:none;border:none}
+
+/* Hero */
+.hero{display:grid;place-items:center;min-height:65vh;
+  background:linear-gradient(180deg,#121214,#1a1b1f);
+  border-bottom:1px solid var(--border);text-align:center}
+.hero-inner{max-width:1100px;padding:40px 20px}
+.hero h1{font-family:"Playfair Display",serif;
+  font-size:clamp(2rem,6vw,4rem);
+  background:linear-gradient(90deg,#fff,var(--accent-2) 70%,var(--accent) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  margin-bottom:16px}
+.hero p{color:var(--muted);max-width:720px;margin:0 auto}
+.hero-media{margin-top:28px;display:grid;gap:16px;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.hero-media img{width:100%;height:220px;object-fit:cover;border-radius:14px;border:1px solid var(--border);box-shadow:var(--shadow)}
+
+/* Seções */
+.section{max-width:1200px;margin:0 auto;padding:clamp(2rem,6vw,5rem) 1rem}
+.section h2{font-family:"Playfair Display",serif;font-size:clamp(1.6rem,4vw,2.5rem);margin-bottom:16px}
+.section p{color:var(--muted)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:clamp(1rem,3vw,2rem);box-shadow:var(--shadow)}
+
+/* Galeria */
+.gallery{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.gallery img{height:200px;object-fit:cover;border-radius:10px;border:1px solid var(--border)}
+
+/* Colaboradores */
+.members{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.member{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.member img{width:100%;height:220px;object-fit:cover}
+.member .info{padding:14px}
+.member .name{font-weight:700}
+.member .role{color:var(--muted);font-size:14px;margin-top:6px}
+
+/* Servindo / 3 colunas */
+.three-cols{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.three-cols .card img{height:160px;object-fit:cover;border-radius:10px;margin-bottom:10px}
+
+/* Propósito */
+.highlight{background:#222;padding:30px;border-radius:16px;text-align:center;border:1px solid var(--border)}
+.highlight h2{color:var(--accent);margin-bottom:10px}
+
+/* Playlist */
+.playlist iframe{
+  width:100%;
+  min-height:300px;
+  border:none;
+  border-radius:12px;
+  background:#0a0a0a;
+}
+@media (max-width:480px){
+  .playlist iframe{min-height:220px}
+}
+@media (min-width:481px) and (max-width:768px){
+  .playlist iframe{min-height:260px}
+}
+@media (min-width:769px){
+  .playlist iframe{min-height:380px}
+}
+
+/* Devocionais */
+.dev-list{display:grid;gap:16px}
+.dev-item{background:#17181d;border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.dev-item header{padding:12px 16px;border-bottom:1px solid var(--border)}
+.dev-item .meta{color:var(--muted);font-size:14px}
+.dev-item .body{padding:16px}
+.dev-item .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.tag{font-size:12px;padding:6px 10px;border-radius:999px;border:1px solid var(--border);color:#dcdfe6}
+
+/* Botões */
+.btn{padding:10px 14px;border:none;border-radius:8px;cursor:pointer}
+.btn-accent{background:var(--accent);color:#111}
+.btn-danger{background:var(--danger);color:#fff}
+.btn-success{background:var(--success);color:#fff}
+
+/* Rodapé */
+footer{border-top:1px solid var(--border);padding:20px;text-align:center;color:var(--muted)}
+
+/* ===== Responsividade ===== */
+
+/* Celulares pequenos */
+@media (max-width:480px){
+  body{font-size:14px}
+  .hero h1{font-size:1.8rem}
+  .hero p{font-size:.9rem}
+  .hero-media img{height:180px}
+  .section{padding:2rem 1rem}
+}
+
+/* Tablets */
+@media (min-width:481px) and (max-width:768px){
+  .hero h1{font-size:2.2rem}
+  .hero-media img{height:200px}
+  .members{grid-template-columns:1fr 1fr}
+  .three-cols{grid-template-columns:1fr 1fr}
+  .gallery{grid-template-columns:1fr 1fr}
+}
+
+/* Notebooks médios */
+@media (min-width:769px) and (max-width:1024px){
+  .hero h1{font-size:2.8rem}
+  .members{grid-template-columns:repeat(2,1fr)}
+  .three-cols{grid-template-columns:repeat(2,1fr)}
+  .gallery{grid-template-columns:repeat(2,1fr)}
+}
+
+/* Desktops grandes */
+@media (min-width:1025px){
+  .hero h1{font-size:4rem}
+  .section{padding:5rem 2rem}
+}
+
+/* Nav responsivo */
+@media (max-width:768px){
+  .menu-toggle{display:block}
+  .nav-links{
+    display:none;
+    flex-direction:column;
+    position:absolute;
+    top:100%;
+    right:20px;
+    background:#111;
+    padding:1rem;
+    border-radius:8px;
+    width:200px;
+  }
+  .nav-links.active{display:flex}
+}
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav">
+      <button class="menu-toggle">☰</button>
+      <div class="brand">
+        <img src="./781cd0900e020e8421732abcbb8a3355-removebg-preview.png" alt="Logomarca HYYahweh">
+        <span>HYYahweh</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#sobre">Sobre</a>
+        <a href="#colaboradores">Colaboradores</a>
+        <a href="#servindo">Servindo</a>
+        <a href="#proposito">Propósito</a>
+        <a href="#playlist">Playlist</a>
+        <a href="#adminLogin">Planos devocionais</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>MAIS DO QUE UMA PÁGINA</h1>
+      <p>Nossa missão é apontar para Cristo com beleza, verdade e constância.</p>
+      <div class="hero-media">
+        <img src="https://uir.my.canva.site/hyyahweh/_assets/media/781cd0900e020e8421732abcbb8a3355.jpg" alt="Imagem 1">
+        <img src="./sp.png" alt="Imagem 2">
+        <img src="./jesuslight.png" alt="Imagem 3">
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre" class="section">
+    <div class="grid-2">
+      <div class="card">
+        <h2>Sobre a HYYahweh</h2>
+        <p>Nós somos a HYYahweh, uma página digital criada única e exclusivamente para falar da palavra do Senhor e seus ensinamentos. Queremos ajudar você a cada dia mais ser como Cristo e ser seu reflexo.</p>
+      </div>
+      <div class="card">
+        <div class="gallery">
+          <img src="./vk.jpg" alt="Galeria 1">
+          <img src="./Não é “Jesus mais suas boas obras”_ Não é “Jesus mais sua religião”. Não é “Jesus mais seus esforços”. É só Jesus. Quando acrescentamos qualquer o.__Pense nisso_ se houvesse outro caminho, Deus teria poupado o Seu F___" alt="Galeria 2">
+          <img src="./Não é “Jesus mais suas boas obras”_ Não é “Jesus mais sua religião”. Não é “Jesus mais seus esforços”. É só Jesus. Quando acrescentamos qualqu (1).__Pense nisso_ se houvesse outro caminho, Deus teria poupado o Seu F___" alt="Galeria 3">
+          <img src="./E tenho dito.jpg" alt="Galeria 4">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="colaboradores" class="section">
+    <h2>Colaboradores</h2>
+    <p>Colaboradores da HYYahweh, servos do Senhor e aprendizes do Evangelho.</p>
+    <div class="members">
+      <article class="member">
+        <img src="./JOÃO ALFREDO.jpg" alt="João Alfredo">
+        <div class="info">
+          <div class="name">João Alfredo</div>
+          <div class="role">Fundador da HYYahweh, Cristão de Berço , membro e levita da Comunidade Casas e Apaixonado por Jesus</div>
+        </div>
+      </article>
+      <article class="member">
+        <img src="./SAMUEL PORTELA.jpg" alt="Samuel Portela">
+        <div class="info">
+          <div class="name">Samuel Portela</div>
+          <div class="role">Adorador de Jesus e Embaixador da HYYahweh, compositor de louvores de intimidade e amor com Jesus, Membro e levita da Tabernaculo Church PIBC</div>
+        </div>
+      </article>
+      <article class="member">
+        <img src="./ERICK GABRIEL.jpg" alt="Erick Gabriel">
+        <div class="info">
+          <div class="name">Erick Gabriel</div>
+          <div class="role">Co-criador de Conteúdo e Parceiro Oficial da HYYahweh e um servo abençoado do Senhor, Fundador da Página Jesus Light of the World Parceira da HYYAhweh e Membro da PIBMCR - PR </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="servindo" class="section">
+    <h2>Servindo por algo maior!</h2>
+    <div class="three-cols">
+      <div class="card">
+        <img src="./Avivamento- igreja_.jpg" alt="Palco com JESUS">
+        <h3>Sem lucro</h3>
+        <p>A página não tem nenhuma intenção de fins lucrativos próprios! Qualquer doação pedida será destinada para a página ou para ação social.</p>
+      </div>
+      <div class="card">
+        <img src="./pray.jpg" alt="Geração Eleita">
+        <h3>Resgatando almas</h3>
+        <p>Nosso maior propósito é ganhar almas e ver novos missionários, levitas, servos e adoradores da geração eleita.</p>
+      </div>
+      <div class="card">
+        <img src="./Vivo__ Não gostei deste tom.jpg" alt="Meu coração queima por Ti">
+        <h3>Somos independentes</h3>
+        <p>Somos uma página totalmente independente, sem ligação com alguma denominação! Não temos religião, mas temos um compromisso em anunciar e proclamar Cristo.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="proposito" class="section">
+    <div class="highlight">
+      <h2>Você tem propósito!</h2>
+      <p>Não desista do chamado que Deus tem para você! Ele te ama e te deseja muito; Ele preferiu morrer do que te perder. Entregue-se a esse ousado amor e veja sua vida ser mudada!</p>
+      <blockquote style="margin-top:16px; color:#e8e8e8">
+        “Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna.” — João 3:16
+      </blockquote>
+    </div>
+  </section>
+
+<section id="playlist" class="section">
+  <h2>Playlist da página</h2>
+  <div class="card playlist">
+    <p>Ouça nossa seleção de músicas:</p>
+    <iframe 
+      src="https://open.spotify.com/embed/playlist/483RSOCOdGC5YZ9nRVQBH4" 
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+    </iframe>
+  </div>
+</section>
+
+ 
+
+  <section id="devocionais" class="section">
+  <h2>Planos devocionais</h2>
+  <p>Devocionais preparados pela equipe HYYahweh.</p>
+
+  <div class="dev-list">
+    <!-- Devocional 1 -->
+    <article class="dev-item">
+      <header>
+        <div class="head">
+          <div>
+            <strong>A verdadeira Liberdade</strong>
+            <div class="meta">30/09/2025 • João 8:34</div>
+          </div>
+        </div>
+      </header>
+      <div class="body">
+        <p>𝑱𝒐𝒂̃𝒐 8:34 "𝑫𝒊𝒔𝒔𝒆-𝒍𝒉𝒆𝒔 𝑱𝒆𝒔𝒖𝒔: '𝑬𝒎 𝒗𝒆𝒓𝒅𝒂𝒅𝒆, 𝒆𝒎 𝒗𝒆𝒓𝒅𝒂𝒅𝒆 𝒗𝒐𝒔 𝒅𝒊𝒈𝒐 𝒒𝒖𝒆 𝒕𝒐𝒅𝒐 𝒂𝒒𝒖𝒆𝒍𝒆 𝒒𝒖𝒆 𝒄𝒐𝒎𝒆𝒕𝒆 𝒑𝒆𝒄𝒂𝒅𝒐 𝒆́ 𝒆𝒔𝒄𝒓𝒂𝒗𝒐 𝒅𝒐 𝒑𝒆𝒄𝒂𝒅𝒐."
+
+Explicação: Jesus nos diz que aquele que comete pecado se torna escravo do pecado e acaba não tendo a verdadeira liberdade.
+
+ <br>
+ Reflexão: A escravidão do pecado é algo que afeta a humanidade toda. O pecado tem o poder de nos separar de Deus e nos prender em uma vida de medo, vergonha, culpa e até morte espiritual. Jesus, o Filho de Deus, tem todo o poder para nos libertar da escravidão do pecado, e se Ele libertar alguém, essa pessoa será verdadeiramente livre..</p>
+        <div class="tags">
+          <span class="tag">Tema: Fé</span>
+          <span class="tag">Autor: Erick Gabriel</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Devocional 2 -->
+    <article class="dev-item">
+      <header>
+        <div class="head">
+          <div>
+            <strong>Sabedoria em Cristo</strong>
+            <div class="meta">01/10/2025 • Romanos 11:33</div>
+          </div>
+        </div>
+      </header>
+      <div class="body">
+        <p>“Ó profundidade das riquezas, tanto da sabedoria, como da ciência de Deus! Quão insondáveis são os seus juízos, e quão inescrutáveis, os seus caminhos!”
+‭‭Romanos‬ ‭11‬:‭33‬ ‭
+<br>
+
+Logo após Paulo explicar o plano da salvação dos judeus e gentios, ele contempla quão grande é o conhecimento e a sabedoria de Deus, pois Ele é um Deus profundo em conhecimento. 
+<br>Sua sabedoria e conhecimento vão além da nossa compreensão, pois não é um Deus raso, mas sim profundo.
+<br> Devemos pedir, a cada dia, que o conhecimento de Deus se revele a nós.
+
+Paulo foi um homem que não conhecia a Cristo e teve um dos encontros mais marcantes com Deus na história das Escrituras.
+<br> Ele levava uma vida profana, perseguindo e matando cristãos daquela época. Porém, quando estava a caminho de Damasco, Deus se revelou a ele por meio de uma forte luz, fazendo-o ficar cego por três dias. 
+<br>Então Deus disse: “Saulo, Saulo, por que me persegues?”. Depois disso, sua vida nunca mais foi a mesma. Ele foi tão marcado que chegou a dizer: “Considero tudo como perda por causa da sublimidade do conhecimento de Deus”.
+<br>
+Que o nosso desejo seja conhecer a Cristo a cada dia, pedindo para que Ele se revele a nós. Deus não é raso, mas profundo, e nós também devemos ser profundos Nele. Que o nosso anseio seja ver o que Paulo viu, ao ponto de considerar tudo como perda para ganhar a Cristo. Tenho certeza de que Paulo não viu apenas uma forte luz, mas sim algo maior e mais belo. Que não nos conformemos com um conhecimento raso de Jesus, mas que o busquemos a cada dia, pois há algo mais belo que Ele deseja nos revelar, que venhamos sair das águas rasas e mergulhar nas águas profundas, que não só os nossos pés estejam molhados mas que nós venhamos mergulhar em águas que passem a nado.</p>
+        <div class="tags">
+          <span class="tag">Tema: Sabedoria</span>
+          <span class="tag">Autor: Samuel Portela</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Devocional 3 -->
+    <article class="dev-item">
+      <header>
+        <div class="head">
+          <div>
+            <strong>O Senhor é bom e fiel!</strong>
+            <div class="meta">01/10/2025 • Salmos 37:25-26</div>
+          </div>
+        </div>
+      </header>
+      <div class="body">
+        <p>O salmo 37:25-26 traz o testemunho de Davi já em idade avançada, afirmando: “Fui jovem e agora sou velho, mas nunca vi o justo desamparado, nem seus filhos mendigando o pão. Ele é sempre generoso e empresta com boa vontade; seus filhos serão abençoados.” 
+          <br>Suas palavras não são teoria, mas fruto de uma vida inteira experimentando a fidelidade de Deus. 
+          <br>O justo pode enfrentar dificuldades, mas jamais será abandonado, pois o Senhor é quem sustenta e provê em todo tempo. 
+          <br>Essa confiança gera um coração generoso, que reparte e ajuda, porque sabe que a fonte de provisão não está em si mesmo, mas em Deus. 
+          <br>Além disso, a bênção do justo não se limita a ele, mas alcança seus filhos, deixando um legado de fé e proteção que se estende às próximas gerações.
+          <br> Assim, aprendemos que viver em retidão diante de Deus significa confiar no Seu cuidado, praticar a generosidade e cultivar uma herança espiritual que abençoará os que virão depois de nós.</p>
+        <div class="tags">
+          <span class="tag">Tema: Fé e Esperança</span>
+          <span class="tag">Autor: João Alfredo</span>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+  <section id="contato" class="section">
+  <h2>Contato</h2>
+  <div class="card">
+    <p><strong>Siga-nos nas redes sociais:</strong></p>
+    <ul style="list-style:none; padding:0; margin:0; display:grid; gap:10px;">
+      <li>
+        HYYahweh 
+        <a href="https://www.instagram.com/hyyahweh?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" aria-label="Instagram HYYahweh">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" style="width:20px; height:20px; vertical-align:middle; margin-left:6px; filter:invert(80%);">
+        </a>
+      </li>
+      <li>
+        Samuel Portela 
+        <a href="https://www.instagram.com/samuel.p0rtela?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" aria-label="Instagram Samuel Portela">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" style="width:20px; height:20px; vertical-align:middle; margin-left:6px; filter:invert(80%);">
+        </a>
+      </li>
+      <li>
+        Erick Gabriel 
+        <a href="https://www.instagram.com/silvazx.erick_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" aria-label="Instagram Erick Gabriel">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" style="width:20px; height:20px; vertical-align:middle; margin-left:6px; filter:invert(80%);">
+        </a>
+      </li>
+      <li>
+        Jesus Light of the World 
+        <a href="https://www.instagram.com/jesus.lightoftheworld?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" aria-label="Instagram Jesus Light of the World">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" style="width:20px; height:20px; vertical-align:middle; margin-left:6px; filter:invert(80%);">
+        </a>
+      </li>
+    </ul>
+
+    <div style="margin-top:20px;">
+      <p><strong>Parcerias, doações ou patrocínios?</strong><br>
+      Contate-nos: <a href="mailto:joaoalfredodasilva182008@gmail.com">joaoalfredodasilva182008@gmail.com</a></p>
+    </div>
+  </div>
+</section>
+
+  <footer>
+    © HYYahweh. Feito para servir. Todos os direitos reservados.
+  </footer>
+
+  <script>
+    /* ---------- Config ---------- */
+    const ADMIN_PASSWORD = "senha123"; // Troque por uma senha forte
+    const DEV_KEY = "devotionals";
+    const ADMIN_KEY = "isAdmin";
+    const PLAYLIST_KEY = "playlistUrl";
+
+    /* ---------- Utils ---------- */
+    const qs = sel => document.querySelector(sel);
+    const store = {
+      get(key, fallback){ try{ return JSON.parse(localStorage.getItem(key)) ?? fallback }catch{ return fallback } },
+      set(key, val){ localStorage.setItem(key, JSON.stringify(val)) }
+    };
+    const uid = () => 'd_'+Math.random().toString(36).slice(2,9)+Date.now().toString(36);
+    const escapeHtml = (str='') => str.replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+    const fmtDate = d => {
+      if(!d) return 'Data não informada';
+      const date = new Date(d+'T00:00:00');
+      return date.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric'});
+    };
+
+    /* ---------- Admin gate ---------- */
+    function showAdminUI(isAdmin){
+      qs('#loginMsg').textContent = '';
+      qs('#logoutBtn').style.display = isAdmin ? 'inline-block' : 'none';
+      qs('#devocionais').style.display = isAdmin ? 'block' : 'none';
+      qs('#adminPass').style.display = isAdmin ? 'none' : 'inline-block';
+      qs('#loginBtn').style.display = isAdmin ? 'none' : 'inline-block';
+      if(isAdmin) window.location.hash = '#devocionais';
+    }
+    function loginAdmin(){
+      const input = qs('#adminPass').value;
+      if(input === ADMIN_PASSWORD){
+        localStorage.setItem(ADMIN_KEY, 'true');
+        showAdminUI(true);
+      }else{
+        qs('#loginMsg').textContent = 'Senha incorreta!';
+      }
+    }
+    function logoutAdmin(){
+      localStorage.removeItem(ADMIN_KEY);
+      showAdminUI(false);
+      window.location.hash = '#adminLogin';
+    }
+
+    /* ---------- Devocionais CRUD ---------- */
+    function readForm(){
+      const fd = new FormData(qs('#devForm'));
+      return {
+        id: fd.get('id') || uid(),
+        titulo: (fd.get('titulo')||'').trim(),
+        data: fd.get('data'),
+        referencia: (fd.get('referencia')||'').trim(),
+        tema: fd.get('tema'),
+        texto: (fd.get('texto')||'').trim()
+      };
+    }
+    function resetForm(){
+      const form = qs('#devForm');
+      form.reset();
+      const hid = form.querySelector('input[name="id"]');
+      if(hid) hid.remove();
+    }
+    function saveDevotional(item){
+      const list = store.get(DEV_KEY, []);
+      const i = list.findIndex(x => x.id === item.id);
+      if(i>=0) list[i] = item; else list.push(item);
+      store.set(DEV_KEY, list);
+      renderDevotionals();
+      resetForm();
+    }
+    function editDevotional(item){
+      const form = qs('#devForm');
+      resetForm();
+      const hid = document.createElement('input');
+      hid.type = 'hidden'; hid.name = 'id'; hid.value = item.id;
+      form.appendChild(hid);
+      form.querySelector('[name="titulo"]').value = item.titulo;
+      form.querySelector('[name="data"]').value = item.data;
+      form.querySelector('[name="referencia"]').value = item.referencia;
+      form.querySelector('[name="tema"]').value = item.tema;
+      form.querySelector('[name="texto"]').value = item.texto;
+      window.scrollTo({top: form.offsetTop - 80, behavior:'smooth'});
+    }
+    function deleteDevotional(id){
+      const list = store.get(DEV_KEY, []).filter(x => x.id !== id);
+      store.set(DEV_KEY, list);
+      renderDevotionals();
+    }
+    function renderDevotionals(){
+      const q = (qs('#searchDevos').value||'').toLowerCase();
+      const list = store.get(DEV_KEY, [])
+        .sort((a,b) => (a.data||'').localeCompare(b.data||''))
+        .filter(x => !q || [x.titulo, x.referencia, x.tema].some(v => (v||'').toLowerCase().includes(q)));
+      const container = qs('#devList');
+      container.innerHTML = '';
+      if(list.length===0){
+        container.innerHTML = '<div class="card"><p>Nenhum devocional cadastrado.</p></div>';
+        return;
+      }
+      list.forEach(item => {
+        const el = document.createElement('article');
+        el.className = 'dev-item';
+        el.innerHTML = `
+          <header>
+            <div class="head">
+              <div>
+                <strong>${escapeHtml(item.titulo)}</strong>
+                <div class="meta">${fmtDate(item.data)} • ${escapeHtml(item.referencia)}</div>
+              </div>
+              <div class="stack">
+                <button class="btn" data-edit="${item.id}">Editar</button>
+                <button class="btn btn-danger" data-del="${item.id}">Excluir</button>
+              </div>
+            </div>
+          </header>
+          <div class="body">
+            <p>${escapeHtml(item.texto).replace(/\n/g,'<br>')}</p>
+            <div class="tags">
+              <span class="tag">Tema: ${escapeHtml(item.tema||'')}</span>
+            </div>
+          </div>
+        `;
+        container.appendChild(el);
+        el.querySelector('[data-edit]').onclick = () => editDevotional(item);
+        el.querySelector('[data-del]').onclick = () => { if(confirm('Excluir este devocional?')) deleteDevotional(item.id); };
+      });
+    }
+
+    /* ---------- Export/Import devocionais ---------- */
+    function exportDevos(){
+      const data = store.get(DEV_KEY, []);
+      const blob = new Blob([JSON.stringify(data,null,2)], {type:'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'hyyahweh-devocionais.json'; a.click();
+      URL.revokeObjectURL(url);
+    }
+    function importDevos(){
+      const input = document.createElement('input');
+      input.type = 'file'; input.accept = '.json,application/json';
+      input.onchange = () => {
+        const file = input.files[0]; if(!file) return;
+        const reader = new FileReader();
+        reader.onload = () => {
+          try{
+            const parsed = JSON.parse(reader.result);
+            if(Array.isArray(parsed)){
+              const normalized = parsed.map(x => ({id: x.id || uid(), ...x}));
+              store.set(DEV_KEY, normalized);
+              renderDevotionals();
+            }else{
+              alert('Arquivo inválido.');
+            }
+          }catch(e){ alert('Não foi possível ler o arquivo.'); }
+        };
+        reader.readAsText(file);
+      };
+      input.click();
+    }
+
+    /* ---------- Playlist ---------- */
+    function renderPlaylist(){
+      const url = store.get(PLAYLIST_KEY, '');
+      const wrap = qs('#playlistEmbed');
+      if(!url){
+        wrap.innerHTML = '<p style="color:#9aa0ab">Nenhuma playlist configurada.</p>';
+        return;
+      }
+      const embed = buildPlaylistEmbed(url);
+      if(embed){
+        wrap.innerHTML = embed;
+      }else{
+        wrap.innerHTML = '<p style="color:#9aa0ab">Link não reconhecido. Use uma playlist do YouTube ou do Spotify.</p>';
+      }
+    }
+    function buildPlaylistEmbed(url){
+      try{
+        const u = new URL(url);
+        // YouTube playlist: https://www.youtube.com/playlist?list=PLxxxx
+        if(u.hostname.includes('youtube.com') && u.pathname.includes('/playlist')){
+          const listId = u.searchParams.get('list');
+          if(!listId) return null;
+          return `<iframe src="https://www.youtube.com/embed/videoseries?list=${encodeURIComponent(listId)}" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+        }
+        // YouTube short: https://youtu.be/xxxx -> not a playlist
+        if(u.hostname === 'youtu.be'){ return null; }
+        // Spotify playlist: https://open.spotify.com/playlist/{id}
+        if(u.hostname.includes('spotify.com') && u.pathname.startsWith('/playlist/')){
+          const id = u.pathname.split('/')[2];
+          if(!id) return null;
+          return `<iframe src="https://open.spotify.com/embed/playlist/${encodeURIComponent(id)}" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>`;
+        }
+        return null;
+      }catch(e){
+        return null;
+      }
+    }
+
+    /* ---------- Init & Events ---------- */
+    document.addEventListener('DOMContentLoaded', () => {
+      // Admin state
+      const isAdmin = localStorage.getItem(ADMIN_KEY) === 'true';
+      showAdminUI(isAdmin);
+
+      // Login/logout
+      qs('#loginBtn').addEventListener('click', loginAdmin);
+      qs('#logoutBtn').addEventListener('click', logoutAdmin);
+
+      // Devocionais
+      qs('#devForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const item = readForm();
+        if(!item.titulo || !item.data || !item.referencia){
+          alert('Preencha título, data e referência.');
+          return;
+        }
+        saveDevotional(item);
+      });
+      qs('#clearForm').addEventListener('click', resetForm);
+      qs('#searchDevos').addEventListener('input', renderDevotionals);
+      qs('#exportDevos').addEventListener('click', exportDevos);
+      qs('#importDevos').addEventListener('click', importDevos);
+      renderDevotionals();
+
+      // Playlist
+      qs('#savePlaylistBtn').addEventListener('click', () => {
+        const url = qs('#playlistUrl').value.trim();
+        if(!url){ alert('Cole o link da playlist.'); return; }
+        store.set(PLAYLIST_KEY, url);
+        renderPlaylist();
+      });
+      // Preenche input com valor salvo
+      const savedUrl = store.get(PLAYLIST_KEY, '');
+      if(savedUrl) qs('#playlistUrl').value = savedUrl;
+      renderPlaylist();
+    });
+    document.querySelector('.menu-toggle').addEventListener('click', () => {
+  document.querySelector('.nav-links').classList.toggle('active');
+});
+  </script>
+  
+</body>
+</html>
